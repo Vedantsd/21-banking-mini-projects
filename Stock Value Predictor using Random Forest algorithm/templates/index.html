@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        form {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        select {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #0077cc;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005fa3;
+        }
+
+        hr, .divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 25px 0;
+        }
+
+        h3 {
+            margin: 10px 0;
+            color: #111;
+            font-size: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+
+        ul li {
+            margin: 4px 0;
+            padding: 6px 0;
+            border-bottom: 1px solid #f2f2f2;
+            font-size: 14px;
+        }
+
+        small {
+            display: block;
+            margin-top: 15px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .invisible {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+
+        .container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .container {
+                width: 95%;
+                margin: 10px auto;
+                padding: 10px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            h4 {
+                font-size: 16px;
+            }
+
+            ul {
+                padding-left: 20px;
+            }
+
+            .container img {
+                width: 100%;
+                height: auto;
+            }
+
+            form select, form input[type="submit"] {
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h3 {
+                font-size: 16px;
+            }
+            h4 {
+                font-size: 14px;
+            }
+            small {
+                font-size: 12px;
+            }
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <div class="container">
+
+        <form action="/" method="POST">
+
+            <select name="stock_select" id="stock_select" required>
+                <option value="">--Select a Stock--</option>
+                <option value="^BSESN">S&P BSE Sensex</option>
+                <option value="^NSEI">Nifty 50</option>
+                <option value="^CNX100">Nifty 100</option>
+                <option value="^CNX200">Nifty 200</option>
+                <option value="^CNX500">Nifty 500</option>
+                <option value="^NSEBANK">Nifty Bank</option>
+                <option value="^CNXAUTO">Nifty Auto</option>
+                <option value="^CNXENERGY">Nifty Energy</option>
+                <option value="^CNXFINANCE">Nifty Financial Services</option>
+                <option value="^CNXFMCG">Nifty FMCG</option>
+                <option value="^CNXIT">Nifty IT</option>
+                <option value="^CNXMEDIA">Nifty Media</option>
+                <option value="^CNXMETAL">Nifty Metal</option>
+                <option value="^CNXPHARMA">Nifty Pharma</option>
+                <option value="^CNXPSUBANK">Nifty PSU Bank</option>
+                <option value="^CNXREALTY">Nifty Realty</option>
+                <option value="^INDIAVIX">India VIX</option>
+                <option value="^NIFTYMIDCAP150">Nifty Midcap 150</option>
+                <option value="^NIFTYSMALLCAP250">Nifty Smallcap 250</option>
+                <option value="^NIFTYMIDCAP50">Nifty Midcap 50</option>
+                <option value="RELIANCE.NS">Reliance Industries</option>
+                <option value="HDFCBANK.NS">HDFC Bank</option>
+                <option value="TCS.NS">Tata Consultancy Services</option>
+                <option value="BHARTIARTL.NS">Bharti Airtel</option>
+                <option value="ICICIBANK.NS">ICICI Bank</option>
+                <option value="SBIN.NS">State Bank of India</option>
+                <option value="INFY.NS">Infosys</option>
+                <option value="HINDUNILVR.NS">Hindustan Unilever</option>
+                <option value="LICI.NS">Life Insurance Corporation of India</option>
+                <option value="BAJFINANCE.NS">Bajaj Finance</option>
+                <option value="ITC.NS">ITC</option>
+                <option value="LT.NS">Larsen &amp; Toubro</option>
+                <option value="MARUTI.NS">Maruti Suzuki India</option>
+                <option value="M&M.NS">Mahindra &amp; Mahindra</option>
+                <option value="HCLTECH.NS">HCL Technologies</option>
+                <option value="KOTAKBANK.NS">Kotak Mahindra Bank</option>
+                <option value="SUNPHARMA.NS">Sun Pharmaceutical</option>
+                <option value="ULTRACEMCO.NS">UltraTech Cement</option>
+                <option value="AXISBANK.NS">Axis Bank</option>
+                <option value="NTPC.NS">NTPC</option>
+                <option value="TITAN.NS">Titan Company</option>
+                <option value="BAJAJFINSV.NS">Bajaj Finserv</option>
+                <option value="DMART.NS">DMart (Avenue Supermarts)</option>
+                <option value="ONGC.NS">Oil &amp; Natural Gas Corporation (ONGC)</option>
+                <option value="HAL.NS">Hindustan Aeronautics</option>
+                <option value="ADANIPORTS.NS">Adani Ports & SEZ</option>
+                <option value="BEL.NS">Bharat Electronics</option>
+                <option value="WIPRO.NS">Wipro</option>
+                <option value="ADANIENT.NS">Adani Enterprises</option>
+                <option value="POWERGRID.NS">Power Grid Corporation of India</option>
+                <option value="JSWSTEEL.NS">JSW Steel</option>
+                <option value="TATAMOTORS.NS">Tata Motors</option>
+                <option value="BAJAJ-AUTO.NS">Bajaj Auto</option>
+                <option value="ASIANPAINT.NS">Asian Paints</option>
+                <option value="INDIGO.NS">InterGlobe Aviation (IndiGo)</option>
+                <option value="COALINDIA.NS">Coal India</option>
+                <option value="ADANIPOWER.NS">Adani Power</option>
+                <option value="NESTLEIND.NS">Nestlé India</option>
+                <option value="HYUNDAI.NS">Hyundai Motor India</option>
+                <option value="JIOFIN.NS">Jio Financial Services</option>
+                <option value="TATASTEEL.NS">Tata Steel</option>
+                <option value="IOC.NS">Indian Oil Corporation</option>
+                <option value="GRASIM.NS">Grasim Industries</option>
+                <option value="TRENT.NS">Trent Limited</option>
+                <option value="DLF.NS">DLF</option>
+                <option value="SBILIFE.NS">SBI Life Insurance</option>
+                <option value="HINDZINC.NS">Hindustan Zinc</option>
+                <option value="VBL.NS">Varun Beverages</option>
+                <option value="EICHERMOT.NS">Eicher Motors</option>
+                <option value="HDFCLIFE.NS">HDFC Life</option>
+                <option value="VEDL.NS">Vedanta</option>
+                <option value="DIVISLAB.NS">Divis Laboratories</option>
+                <option value="IRFC.NS">Indian Railway Finance Corporation</option>
+                <option value="PIDILITIND.NS">Pidilite Industries</option>
+                <option value="HINDALCO.NS">Hindalco Industries</option>
+                <option value="TVSMOTOR.NS">TVS Motor</option>
+                <option value="ADANIGREEN.NS">Adani Green Energy</option>
+                <option value="LTIM.NS">LTIMindtree</option>
+                <option value="BAJAJHLDNG.NS">Bajaj Holdings & Investment</option>
+                <option value="AMBUJACEM.NS">Ambuja Cements</option>
+                <option value="BRITANNIA.NS">Britannia Industries</option>
+                <option value="BPCL.NS">Bharat Petroleum Corporation (BPCL)</option>
+                <option value="TECHM.NS">Tech Mahindra</option>
+                <option value="GODREJCP.NS">Godrej Consumer Products</option>
+                <option value="SOLARINDS.NS">Solar Industries India</option>
+                <option value="PFC.NS">Power Finance Corporation</option>
+                <option value="CIPLA.NS">Cipla</option>
+                <option value="CHOLAFIN.NS">Cholamandalam Investment & Finance</option>
+                <option value="LODHA.NS">Lodha</option>
+                <option value="HDFCAMC.NS">HDFC Asset Management</option>
+                <option value="TORNTPHARM.NS">Torrent Pharmaceuticals</option>
+                <option value="BANKBARODA.NS">Bank of Baroda</option>
+                <option value="TATAPOWER.NS">Tata Power</option>
+                <option value="PNB.NS">Punjab National Bank</option>
+                <option value="BOSCHLTD.NS">Bosch India</option>
+                <option value="MAXHEALTH.NS">Max Healthcare Institute</option>
+                <option value="GAIL.NS">GAIL (India)</option>
+                <option value="APOLLOHOSP.NS">Apollo Hospitals</option>
+                <option value="SHRIRAMFIN.NS">Shriram Transport Finance</option>
+                <option value="INDHOTEL.NS">Indian Hotels Company</option>
+                <option value="SHREECEM.NS">Shree Cement</option>
+                <option value="SIEMENS.NS">Siemens India</option>
+                <option value="MAZDOCK.NS">Mazagon Dock Shipbuilders</option>
+                <option value="MUTHOOTFIN.NS">Muthoot Finance</option>
+                <option value="TATACONSUM.NS">Tata Consumer Products</option>
+                <option value="ABB.NS">ABB India</option>
+                <option value="CUMMINSIND.NS">Cummins India</option>
+                <option value="POLYCAB.NS">Polycab India</option>
+                <option value="CGPOWER.NS">CG Power & Industrial Solutions</option>
+                <option value="DRREDDY.NS">Dr. Reddy’s Laboratories</option>
+                <option value="HEROMOTOCO.NS">Hero MotoCorp</option>
+                <option value="DIXON.NS">Dixon Technologies</option>
+                <option value="MANKIND.NS">Mankind Pharma</option>
+                <option value="ZYDUSLIFE.NS">Zydus Lifesciences</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="container {{ 'visible' if prediction else 'invisible' }}">
+        {% if prediction %}
+            <h3>Predicted Next Close Price: ₹{{ prediction | round(2) }}</h3>
+            <p><b>Model Accuracy on Test Data:</b></p>
+            <ul>
+                <li>Root Mean Squared Error: {{ rmse }}</li>
+                <li>R² Score: {{ r2 }}</li>
+            </ul>
+            <small>Note: Predictions are based only on past 1-year prices and technical indicators. 
+            Real market moves depend on many other factors.</small>
+        {% endif %}
+    </div>
+
+    <div class="container {{ 'visible' if prediction else 'invisible' }}">
+        {% if charts %}
+            <h3>Visualizations</h3>
+            <div>
+                <h4>Historical Stock Prices</h4>
+                <img src="data:image/png;base64,{{ charts.history }}" width="600">
+            </div>
+            <div>
+                <h4>Prediction vs Actual</h4>
+                <img src="data:image/png;base64,{{ charts.pred_vs_actual }}" width="600">
+            </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $('#stock_select').select2({
+            placeholder: "Search for a stock",
+            allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>
