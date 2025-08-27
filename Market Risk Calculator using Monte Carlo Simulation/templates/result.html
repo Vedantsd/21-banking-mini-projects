@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaR Results</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 8px 20px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #2d3748;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .result-group {
+      background: #f7fafc;
+      padding: 16px 20px;
+      margin-bottom: 15px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #4a5568;
+    }
+
+    .value {
+      color: #2d3748;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 10px 30px rgba(102, 126, 234, 0.3),
+        0 6px 20px rgba(118, 75, 162, 0.2);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 25px;
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .result-group {
+        font-size: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .value {
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>VaR Results</h1>
+
+    <div class="result-group">
+      <span class="label">Invested Amount:</span>
+      <span class="value">₹{{ "{:,.2f}".format(result.invested_amount) }}</span>
+    </div>
+
+    <div class="result-group">
+      <span class="label">Confidence Level:</span>
+      <span class="value">{{ result.confidence * 100 }}%</span>
+    </div>
+
+    <div class="result-group">
+      <span class="label">Portfolio Weights:</span>
+      <span class="value">Nifty: {{ result.weights[0]*100 }}%, Sensex: {{ result.weights[1]*100 }}%, BankNifty: {{ result.weights[2]*100 }}%</span>
+    </div>
+
+    <div class="result-group">
+      <span class="label">Mean P&amp;L:</span>
+      <span class="value">₹{{ "{:,.2f}".format(result.mean_pnl) }}</span>
+    </div>
+
+    <div class="result-group">
+      <span class="label">Worst Loss (Simulated):</span>
+      <span class="value">₹{{ "{:,.2f}".format(result.worst_loss) }}</span>
+    </div>
+
+    <div class="result-group">
+      <span class="label">VaR ({{ result.confidence*100 }}% CL):</span>
+      <span class="value">₹{{ "{:,.2f}".format(result.VaR) }}</span>
+    </div>
+
+    <a href="/" class="back-btn">← Back to Inputs</a>
+  </div>
+</body>
+</html>

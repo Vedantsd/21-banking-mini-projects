@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaR Calculator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 8px 20px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #2d3748;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      outline: none;
+      background: #ffffff;
+      color: #2d3748;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: inherit;
+    }
+
+    input[type="number"]:focus,
+    input[type="date"]:focus {
+      border-color: #667eea;
+      box-shadow: 
+        0 0 0 3px rgba(102, 126, 234, 0.1),
+        0 4px 12px rgba(102, 126, 234, 0.15);
+      transform: translateY(-2px);
+    }
+
+    input[type="number"]:hover,
+    input[type="date"]:hover {
+      border-color: #cbd5e0;
+    }
+
+    input[type="number"]::placeholder {
+      color: #a0aec0;
+      font-weight: 400;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    input[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 10px 30px rgba(102, 126, 234, 0.3),
+        0 6px 20px rgba(118, 75, 162, 0.2);
+    }
+
+    input[type="submit"]:active {
+      transform: translateY(0);
+    }
+
+    .fetch_time {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .error {
+      background: linear-gradient(135deg, #fed7d7, #feb2b2);
+      color: #c53030;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border-left: 4px solid #e53e3e;
+      display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Enhanced mobile responsiveness */
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+      
+      .container {
+        padding: 30px 25px;
+        border-radius: 16px;
+      }
+      
+      h1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+      }
+      
+      .fetch_time {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      input[type="number"],
+      input[type="date"],
+      input[type="submit"] {
+        padding: 14px 16px;
+        font-size: 15px;
+      }
+    }
+
+    /* Focus indicators for accessibility */
+    input:focus-visible {
+      outline: 2px solid #667eea;
+      outline-offset: 2px;
+    }
+
+    /* Loading state animation */
+    .loading {
+      position: relative;
+      color: transparent;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid #ffffff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>VaR Calculator - Inputs</h1>
+
+    <form id="varForm" action="/submit" method="POST">
+      <input type="number" name="invested_amount" placeholder="Enter invested amount" required>
+      
+      <input type="number" id="nifty" name="nifty" placeholder="% of investment in NIFTY50" min="0" max="100" required>
+      <input type="number" id="sensex" name="sensex" placeholder="% of investment in SENSEX" min="0" max="100" required>
+      <input type="number" id="banknifty" name="banknifty" placeholder="% of investment in BANK NIFTY" min="0" max="100" required>
+
+      <div class="fetch_time">
+        <input type="date" name="start_day" min="2010-01-01" required>
+        <input type="number" name="day_count" placeholder="Time horizon" required>
+      </div>
+
+      <input type="number" name="confidence" placeholder="Confidence %" min="90" max="99" required>
+
+      <p class="error" id="errorMsg">⚠️ Total allocation cannot exceed 100%</p>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <script>
+    const nifty = document.getElementById("nifty");
+    const sensex = document.getElementById("sensex");
+    const banknifty = document.getElementById("banknifty");
+    const form = document.getElementById("varForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    function validateSum() {
+      const total =
+        Number(nifty.value || 0) +
+        Number(sensex.value || 0) +
+        Number(banknifty.value || 0);
+
+      if (total > 100) {
+        errorMsg.style.display = "block";
+        return false;
+      } else {
+        errorMsg.style.display = "none";
+        return true;
+      }
+    }
+
+    nifty.addEventListener("input", validateSum);
+    sensex.addEventListener("input", validateSum);
+    banknifty.addEventListener("input", validateSum);
+
+    form.addEventListener("submit", function (e) {
+      if (!validateSum()) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

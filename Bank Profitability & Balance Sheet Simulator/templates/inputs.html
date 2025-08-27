@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Data inputs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+      }
+
+      input[type="number"], 
+      input[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>  
+
+  <div class="container">
+
+    <h2 style="text-align:center; margin-bottom:20px; color:#007bff;">
+        📥 Bank Balance Sheet Simulator – Inputs
+    </h2>
+
+    <form action="/calculate" method="POST">
+
+      <input type="number" name="loan_amount" placeholder="Enter loan amount" required>
+
+      <input type="number" name="loan_interest_rate" placeholder="Enter loan interest rate (%)" required>
+      
+      <input type="number" name="deposits" placeholder="Enter deposits amount" required>
+      
+      <input type="number" name="deposit_interest_rate" placeholder="Enter deposits interest rate (%)" required>
+      
+      <input type="number" name="non_performing_assets" placeholder="Enter non performing assets ratio (%)" required>
+      
+      <input type="number" name="opex_ratio" placeholder="Enter operating expense ratio (%)" required>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+</body>
+</html>

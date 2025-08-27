@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculated Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .results {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .result-item {
+      background: #f9fbfd;
+      padding: 12px;
+      border: 1px solid #e1e5ea;
+      border-radius: 6px;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .result-item:hover {
+      background: #eef4fb;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .value {
+      color: #007bff;
+      font-weight: 600;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+      }
+
+      .result-item {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>  
+
+  <div class="container">
+
+    <h2 style="text-align:center; margin-bottom:20px; color:#28a745;">
+        📊 Simulation Results
+    </h2>
+
+    <div class="results">
+
+      <div class="result-item">
+        <span class="label">Interest Income:</span>
+        <span class="value">₹ {{ interest_income }}</span>
+      </div>
+
+      <div class="result-item">
+        <span class="label">Interest Expense:</span>
+        <span class="value">₹ {{ interest_expense }}</span>
+      </div>
+
+      <div class="result-item">
+        <span class="label">Earning Assets:</span>
+        <span class="value">₹ {{ earning_assets }}</span>
+      </div>
+
+      <div class="result-item">
+        <span class="label">Net Interest Margin:</span>
+        <span class="value">{{ net_interest_margin }} %</span>
+      </div>
+
+      <div class="result-item">
+        <span class="label">Operating Expense:</span>
+        <span class="value">₹ {{ operating_expense }}</span>
+      </div>
+
+      <div class="result-item">
+        <span class="label">Net Profit:</span>
+        <span class="value">₹ {{ net_profit }}</span>
+      </div>
+
+    </div>
+
+    <div style="display: flex; gap: 15px; margin-top: 20px; justify-content: center;">
+        <form action="/download_csv" method="POST" style="flex:1;">
+            <input type="hidden" name="interest_income" value="{{ interest_income }}">
+            <input type="hidden" name="interest_expense" value="{{ interest_expense }}">
+            <input type="hidden" name="earning_assets" value="{{ earning_assets }}">
+            <input type="hidden" name="net_interest_margin" value="{{ net_interest_margin }}">
+            <input type="hidden" name="operating_expense" value="{{ operating_expense }}">
+            <input type="hidden" name="net_profit" value="{{ net_profit }}">
+            <button type="submit" style="width:100%; background:#007bff; color:#fff; padding:12px; border:none; border-radius:6px; cursor:pointer;">
+                Download Report
+            </button>
+        </form>
+
+        <form action="/history" method="POST" style="flex:1;">
+            <button type="submit" style="width:100%; background:#007bff; color:#fff; padding:12px; border:none; border-radius:6px; cursor:pointer;">
+                View History
+            </button>
+        </form>
+    </div>
+  </div>
+
+</body>
+</html>

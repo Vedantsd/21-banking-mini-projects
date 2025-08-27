@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculation History</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f7f9; padding:30px; }
+    table { border-collapse: collapse; width:100%; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align:center; }
+    th { background:#007bff; color:white; }
+    tr:nth-child(even){ background:#f2f2f2; }
+  </style>
+</head>
+<body>
+  <h2>📜 Previous Calculations</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Loan</th>
+      <th>Deposits</th>
+      <th>NPA %</th>
+      <th>OPEX %</th>
+      <th>Interest Income</th>
+      <th>Net Profit</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row[0] }}</td>
+      <td>{{ row[1] }}</td>
+      <td>{{ row[3] }}</td>
+      <td>{{ row[5] }}</td>
+      <td>{{ row[6] }}</td>
+      <td>{{ row[7] }}</td>
+      <td>{{ row[12] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
