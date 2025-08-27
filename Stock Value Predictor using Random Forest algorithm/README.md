@@ -48,5 +48,18 @@ It uses **Random Forest Regression** on historical stock market data (fetched us
 
 ---
 
+## 📸 Screenshots
+
+1. Search Stock
+<img width="1049" height="131" alt="image" src="https://github.com/user-attachments/assets/faa5a0e7-5aa6-4f11-a778-7d7914510d08" />
+
+2. Prediction Display
+<img width="1044" height="263" alt="image" src="https://github.com/user-attachments/assets/e1ceb92e-fe28-45d8-9b41-d40606b54ce3" />
+
+3. Charts
+<img width="833" height="842" alt="image" src="https://github.com/user-attachments/assets/462fa76f-2067-433f-b897-aa25ad626ab6" />
+
+---
+
 ⚡ *Note:* Predictions are based only on past 1-year prices & simple technical indicators.  
 Real-world stock movements depend on many factors not included here (macro trends, news, events, etc.).  
