@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 📊 Market Risk Calculator using Monte Carlo Simulation (Flask Web App)
 
 A **fintech web application** built with **Flask** that calculates the **Value at Risk (VaR)** of a portfolio consisting of **Nifty50, Sensex, and Bank Nifty** indices using **Monte Carlo simulations**.  
@@ -99,17 +98,3 @@ The app allows users to input their portfolio weights, investment horizon, and c
   - VaR at chosen confidence level  
 - 🎨 Modern and responsive UI (HTML + CSS with gradients and animations)  
 - ✅ Input validation (ensures portfolio weights ≤ 100%)  
-
----
-
-## 📂 Project Structure
-
-.
-├── app.py # Main Flask application
-├── templates/
-│ ├── inputs.html # Input form (portfolio details)
-│ ├── result.html # Results page (VaR outputs)
-├── static/ # (optional) for CSS/JS files if needed in future
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
->>>>>>> 48e9196 (Added Stock Value Predictor project)
